@@ -126,8 +126,12 @@ class Extension(interface.Extension):
             '# match the buildroot and must be removed or the package will '
             'fail to build.',
             'find %{buildroot} -name "RECORD" -exec rm -rf {} \\;',
+            '# Remove symlink and copy files instead',
+            'cd %{venv_dir}',
+            'rm -rf %{venv_dir}/lib64',
+            'cp -r %{venv_dir}/lib %{venv_dir}/lib64',
             '# Change the virtualenv path to the target installation '
-            'direcotry.',
+            'directory.',
             'venvctrl-relocate --source=%{venv_dir}'
             ' --destination=/%{venv_install_dir}',
             '# Strip native modules as they contain buildroot paths in their'
