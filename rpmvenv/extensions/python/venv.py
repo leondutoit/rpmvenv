@@ -136,7 +136,8 @@ class Extension(interface.Extension):
             ' --destination=/%{venv_install_dir}',
             '# Strip native modules as they contain buildroot paths in their'
             ' debug information',
-            '#find %{venv_dir}/lib -type f -name "*.so" | xargs -r strip'
+            'find %{venv_dir}/lib/python2.7/site-packages/pandas -type f -name "*.so" | xargs -r strip',
+            'find %{venv_dir}/lib64/python2.7/site-packages/pandas -type f -name "*.so" | xargs -r strip'
 
         ))
 
